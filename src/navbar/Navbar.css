@@ -1,0 +1,26 @@
+.navbar {
+  background-color: #333;
+  border-radius: 0;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+}
+
+.navbar-brand:hover {
+  color: #fff;
+}
+
+.navbar-nav {
+  /* margin-left: auto; */
+  margin-left: 450px;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+  margin-left: 2rem;
+}
+
+.nav-link:hover {
+  color: #fff;
+}
