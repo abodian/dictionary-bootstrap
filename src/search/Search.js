@@ -34,7 +34,8 @@ export function Search({searchType, onFetchData}) {
     <div className="search-container">
       <InputGroup className="mb-3" id="word-search">
         <Form.Control
-          placeholder="Which word would you like to define?"
+          className='word-search-input'
+          placeholder="Dictionary"
           aria-label="word"
           aria-describedby="basic-addon2"
           value={word}
@@ -46,7 +47,7 @@ export function Search({searchType, onFetchData}) {
           id="button-addon2"
           onClick={handleDictionarySubmit}
         >
-          Get Definition
+          Define
         </Button>
       </InputGroup>
     </div>
@@ -56,7 +57,8 @@ export function Search({searchType, onFetchData}) {
     <div className="search-container">
       <InputGroup className="mb-3" id="word-search">
         <Form.Control
-          placeholder="Which word would you like to send to the thesaurus?"
+          className='word-search-input'
+          placeholder="Thesaurus"
           aria-label="word"
           aria-describedby="basic-addon2"
           onChange={(event) => setWord(event.target.value)}

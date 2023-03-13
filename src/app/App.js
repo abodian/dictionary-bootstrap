@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import { SiteNavbar } from '../navbar/Navbar.js'
 import { Search } from '../search/Search.js'
+import { ResultBox } from '../resultBox/ResultBox.js'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
         onDictionaryClick={() => handleSearchTypeChange('Dictionary')}
         />
         <Search searchType={searchType}/>
+        < ResultBox />
       </div>
     </>
   )

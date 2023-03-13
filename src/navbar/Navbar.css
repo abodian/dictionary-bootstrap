@@ -24,3 +24,27 @@
 .nav-link:hover {
   color: #fff;
 }
+
+@media screen and (max-width: 767px) {
+  .navbar {
+    width: 100%;
+  }
+
+  .navbar-nav {
+    margin-left: 0;
+  }
+
+  .site-navbar .navbar-brand,
+  .site-navbar .nav-link {
+    font-size: 5vw;
+    margin-left: 0;
+  }
+
+  .site-navbar .nav-link {
+    margin-left: 20px;
+  }
+
+  .nav-link {
+    margin-left: 0;
+  }
+}

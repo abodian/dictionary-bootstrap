@@ -1,0 +1,22 @@
+.result-box-container {
+  position: absolute;
+  top: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#result-box {
+  width: 50%;
+}
+
+@media screen and (max-width: 767px) {
+  .result-box-container {
+    top: 35%;
+  }
+
+  #result-box {
+    width: 80%;
+  }
+}

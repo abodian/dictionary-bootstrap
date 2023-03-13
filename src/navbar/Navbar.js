@@ -6,8 +6,8 @@ require('./Navbar.css')
 
 export function SiteNavbar({onThesaurusClick, onDictionaryClick}) {
   return (
-    <Navbar bg="dark" variant="dark">
-     <Container>
+    <Navbar bg="dark" variant="dark" className='site-navbar'>
+      <Container>
         <Navbar.Brand href="/">Home</Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link onClick={onDictionaryClick}>Dictionary</Nav.Link>
@@ -15,5 +15,5 @@ export function SiteNavbar({onThesaurusClick, onDictionaryClick}) {
         </Nav>
       </Container>
     </Navbar>
-  )
+  );
 }
