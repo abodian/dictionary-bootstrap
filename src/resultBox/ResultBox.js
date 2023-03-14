@@ -4,8 +4,12 @@ require('./ResultBox.css')
 
 export function ResultBox({wordData}) {
   if (!wordData) {
-    return null; // Return early if wordData is empty
+    return null;
   }
+
+  const phoneticsArray = wordData.phonetics
+  const lastPhoneticsObject = phoneticsArray[phoneticsArray.length - 1]
+  const audioLink = lastPhoneticsObject.audio
   
   return (
     <div className='result-box-container'>
@@ -32,8 +36,7 @@ export function ResultBox({wordData}) {
           <Accordion.Body>
           <h2 className='word'>{`'${wordData.word}' - ${wordData.phonetic}`}</h2>
           <ReactAudioPlayer
-            src={wordData.phonetics[0].audio}
-            autoPlay
+            src={audioLink}
             controls
           />
           </Accordion.Body>
