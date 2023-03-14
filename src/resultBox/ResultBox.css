@@ -1,6 +1,6 @@
 .result-box-container {
   position: absolute;
-  top: 45%;
+  top: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,6 +9,23 @@
 
 #result-box {
   width: 50%;
+}
+
+.definition {
+  border: 5px rgb(133, 188, 210);
+  border-style: solid solid solid;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border-width: 2px;
+}
+
+.word {
+  font-size: 3rem;
+}
+
+.pronounciation-link {
+  margin-top: 40px;
 }
 
 @media screen and (max-width: 767px) {

@@ -1,26 +1,41 @@
 import Accordion from 'react-bootstrap/Accordion';
+import ReactAudioPlayer from 'react-audio-player';
 require('./ResultBox.css')
 
-export function ResultBox() {
+export function ResultBox({wordData}) {
+  if (!wordData) {
+    return null; // Return early if wordData is empty
+  }
+  
   return (
     <div className='result-box-container'>
       <Accordion id='result-box'>
         <Accordion.Item eventKey="0">
           <Accordion.Header>Definition</Accordion.Header>
           <Accordion.Body>
-            Definition goes here
+          <h2 className='word'>{`'${wordData.word}'`}</h2>
+            {wordData.meanings.map(meaning => (
+              <div key={meaning.partOfSpeech}>
+                <h3>{meaning.partOfSpeech}</h3>
+                {meaning.definitions.map(definition => (
+                  <div className='definition' key={definition.definition}>
+                    <p>{definition.definition}</p>
+                    {definition.example && <li><em>Example:</em> {definition.example}</li>}
+                  </div>
+                ))}
+              </div>
+            ))}
           </Accordion.Body>
         </Accordion.Item>
         <Accordion.Item eventKey="1">
           <Accordion.Header>Pronounciation</Accordion.Header>
           <Accordion.Body>
-            Link to phoentics
-          </Accordion.Body>
-        </Accordion.Item>
-        <Accordion.Item eventKey="2">
-          <Accordion.Header>Example Usage</Accordion.Header>
-          <Accordion.Body>
-            Example Usage goes here
+          <h2 className='word'>{`'${wordData.word}' - ${wordData.phonetic}`}</h2>
+          <ReactAudioPlayer
+            src={wordData.phonetics[0].audio}
+            autoPlay
+            controls
+          />
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>

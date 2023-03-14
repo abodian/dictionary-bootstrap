@@ -12,7 +12,8 @@ export function Search({searchType, onFetchData}) {
     const url = `http://localhost:4000/dictionary/${word}`;
     const response = await fetch(url);
     const data = await response.json();
-    onFetchData(data)
+    onFetchData(data.responseData[0])
+    console.log(onFetchData)
   }
 
   const handleThesaurusSubmit = async (event) => {
