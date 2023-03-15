@@ -1,5 +1,5 @@
 const axios = require('axios');
-const DictionaryController = require('./Dictionary');
+const DictionaryController = require('./dictionary');
 
 jest.mock('axios');
 
