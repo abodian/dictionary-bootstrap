@@ -13,7 +13,6 @@ export function Search({searchType, onFetchData}) {
     const response = await fetch(url);
     const data = await response.json();
     onFetchData(data.responseData[0])
-    console.log(`${onFetchData} handleDictionarySubmit`)
   }
 
   const handleThesaurusSubmit = async (event) => {
@@ -22,7 +21,6 @@ export function Search({searchType, onFetchData}) {
     const response = await fetch(url);
     const data = await response.json();
     onFetchData(data.responseData)
-    console.log(`${onFetchData} handleThesaurusSubmit`);
   }
 
   const handleKeyPress = (event) => {

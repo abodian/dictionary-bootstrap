@@ -3,33 +3,28 @@ import ReactAudioPlayer from 'react-audio-player';
 require('./ResultBox.css')
 
 export function ResultBox({wordData, searchType}) {
+  console.log(searchType)
   if (!wordData) {
     return null;
   }
 
-  const phoneticsArray = wordData.phonetics
-  const lastPhoneticsObject = phoneticsArray[phoneticsArray.length - 1]
-  const audioLink = lastPhoneticsObject.audio
+  console.log(wordData)
+  let phoneticsArray, lastPhoneticsObject, audioLink;
+  if (searchType === "Dictionary") {
+    phoneticsArray = wordData.phonetics
+    lastPhoneticsObject = phoneticsArray[phoneticsArray.length - 1]
+    audioLink = lastPhoneticsObject.audio
+  }
   
-  return (
+  return searchType !== 'Thesaurus' ?
+  (
     <div className='result-box-container'>
       <Accordion id='result-box'>
         <Accordion.Item eventKey="0">
           <Accordion.Header>Definition</Accordion.Header>
           <Accordion.Body>
           <h2 className='word'>{`'${wordData.word}'`}</h2>
-            {searchType === 'Dictionary' && wordData.meanings.map(meaning => (
-              <div key={meaning.partOfSpeech}>
-                <h3>{meaning.partOfSpeech}</h3>
-                {meaning.definitions.map(definition => (
-                  <div className='definition' key={definition.definition}>
-                    <p>{definition.definition}</p>
-                    {definition.example && <li><em>Example:</em> {definition.example}</li>}
-                  </div>
-                ))}
-              </div>
-            ))}
-            {searchType === 'Thesaurus' && wordData.meanings.map(meaning => (
+            {wordData.meanings.map(meaning => (
               <div key={meaning.partOfSpeech}>
                 <h3>{meaning.partOfSpeech}</h3>
                 {meaning.definitions.map(definition => (
@@ -54,5 +49,23 @@ export function ResultBox({wordData, searchType}) {
         </Accordion.Item>
       </Accordion>
     </div>
-  );
+  )
+  :
+  (
+    <div className='result-box-container'>
+    <Accordion id='result-box'>
+      <Accordion.Item eventKey="0">
+        <Accordion.Header>Synonyms</Accordion.Header>
+        <Accordion.Body>
+        <h2 className='word'>Synonyms</h2>
+          {wordData.noun.syn.map(synonym => (
+            <div key={synonym}>
+              <p>{synonym}</p>
+            </div>
+          ))}
+        </Accordion.Body>
+      </Accordion.Item>
+    </Accordion>
+  </div>
+  )
 }
