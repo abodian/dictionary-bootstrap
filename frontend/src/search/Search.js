@@ -9,7 +9,7 @@ export function Search({searchType, onFetchData}) {
 
   const handleDictionarySubmit = async (event) => {
     event.preventDefault();
-    const url = `http://localhost:4000/dictionary/${word}`;
+    const url = `https://albo-dictionary-backend.onrender.com/dictionary/${word}`;
     const response = await fetch(url);
     const data = await response.json();
     onFetchData(data.responseData[0])
