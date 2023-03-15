@@ -3,7 +3,9 @@ const createError = require("http-errors");
 const path = require("path");
 const logger = require("morgan");
 const dictionaryRouter = require("./routes/dictionary");
+const thesaurusRouter = require("./routes/thesaurus");
 const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
 
@@ -13,7 +15,7 @@ app.use(function (req, res, next) {
   res.header(
     "Access-Control-Allow-Origin",
     "https://albo-dictionary-frontend.onrender.com"
-  ); 
+  );
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
@@ -33,6 +35,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // route setup
 app.use("/dictionary", dictionaryRouter);
+app.use("/thesaurus", thesaurusRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
