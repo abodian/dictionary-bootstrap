@@ -2,7 +2,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import ReactAudioPlayer from 'react-audio-player';
 require('./ResultBox.css')
 
-export function ResultBox({wordData}) {
+export function ResultBox({wordData, searchType}) {
   if (!wordData) {
     return null;
   }

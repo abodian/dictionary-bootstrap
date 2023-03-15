@@ -18,7 +18,7 @@ export function Search({searchType, onFetchData}) {
 
   const handleThesaurusSubmit = async (event) => {
     event.preventDefault();
-    const url = `http://localhost:4000/thesaurus/${word}`;
+    const url = `https://albo-dictionary-backend.onrender.com/thesaurus/${word}`;
     const response = await fetch(url);
     const data = await response.json();
     console.log(data);
