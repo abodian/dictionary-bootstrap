@@ -13,7 +13,7 @@ export function Search({searchType, onFetchData}) {
     const response = await fetch(url);
     const data = await response.json();
     onFetchData(data.responseData[0])
-    console.log(onFetchData)
+    console.log(`${onFetchData} handleDictionarySubmit`)
   }
 
   const handleThesaurusSubmit = async (event) => {
@@ -21,8 +21,8 @@ export function Search({searchType, onFetchData}) {
     const url = `https://albo-dictionary-backend.onrender.com/thesaurus/${word}`;
     const response = await fetch(url);
     const data = await response.json();
-    onFetchData(data.responseData[0])
-    console.log(onFetchData);
+    onFetchData(data.responseData)
+    console.log(`${onFetchData} handleThesaurusSubmit`);
   }
 
   const handleKeyPress = (event) => {
@@ -69,7 +69,7 @@ export function Search({searchType, onFetchData}) {
         <Button 
           variant="outline-secondary" 
           id="button-addon2"
-          type="submit"
+          onClick={handleThesaurusSubmit}
         >
           Get Synonyms
         </Button>

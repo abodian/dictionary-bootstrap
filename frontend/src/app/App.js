@@ -12,6 +12,7 @@ export default function App() {
   const [apiData, setApiData] = useState(null)
 
   const handleSearchTypeChange = (switchSearchType) => {
+    setApiData(null)
     setSearchType(switchSearchType)
   }
 
