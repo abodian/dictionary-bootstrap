@@ -2,7 +2,7 @@ const express = require("express");
 const createError = require("http-errors");
 const path = require("path");
 const logger = require("morgan");
-const dictionaryRouter = require("./routes/Dictionary");
+const dictionaryRouter = require("./routes/dictionary");
 const cors = require("cors");
 
 const app = express();
