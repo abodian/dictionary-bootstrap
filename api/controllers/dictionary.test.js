@@ -1,56 +1,56 @@
-const axios = require('axios');
-const DictionaryController = require('./dictionary');
+const axios = require("axios");
+const DictionaryController = require("./dictionary");
 
-jest.mock('axios');
+jest.mock("axios");
 
-describe('DictionaryController', () => {
-  describe('GetDefinition', () => {
-    it('should return a definition when given a valid word', async () => {
-  
-      const mockResponse = {
-        data: [
-          {
-            meanings: [
-              {
-                definitions: [
-                  {
-                    definition: 'used as a greeting or to begin a telephone conversation',
-                    example: 'hello there, Katie!'
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      };
-      axios.get.mockResolvedValue(mockResponse);
+describe("DictionaryController", () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 
-      const req = {};
-      const res = {
-        json: jest.fn().mockReturnThis(),
-        status: jest.fn().mockReturnThis()
-      };
+  it("should return definition of a word", async () => {
+    const word = "apple";
+    const responseData = [
+      { definition: "a round fruit with red or green skin" },
+    ];
+    axios.get.mockResolvedValueOnce({ data: responseData });
 
-      await DictionaryController.GetDefinition(req, res);
+    const req = { params: { word } };
+    const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
 
-      expect(res.status).toHaveBeenCalledWith(200);
-      expect(res.json).toHaveBeenCalledWith({ response: mockResponse });
-    });
+    await DictionaryController.GetDefinition(req, res);
 
-    it('should return a 500 error when given an invalid word', async () => {
-      const mockError = new Error('Invalid word');
-      axios.get.mockRejectedValue(mockError);
+    expect(axios.get).toHaveBeenCalledTimes(1);
+    expect(axios.get).toHaveBeenCalledWith(
+      `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+    );
 
-      const req = {};
-      const res = {
-        json: jest.fn().mockReturnThis(),
-        status: jest.fn().mockReturnThis()
-      };
+    expect(res.status).toHaveBeenCalledTimes(1);
+    expect(res.status).toHaveBeenCalledWith(200);
 
-      await DictionaryController.GetDefinition(req, res);
+    expect(res.json).toHaveBeenCalledTimes(1);
+    expect(res.json).toHaveBeenCalledWith({ responseData });
+  });
 
-      expect(res.status).toHaveBeenCalledWith(500);
-      expect(res.json).toHaveBeenCalledWith({ error: mockError.message });
-    });
+  it("should return 500 status if there's an error", async () => {
+    const word = "apple";
+    const error = new Error("Something went wrong");
+    axios.get.mockRejectedValueOnce(error);
+
+    const req = { params: { word } };
+    const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+
+    await DictionaryController.GetDefinition(req, res);
+
+    expect(axios.get).toHaveBeenCalledTimes(1);
+    expect(axios.get).toHaveBeenCalledWith(
+      `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+    );
+
+    expect(res.status).toHaveBeenCalledTimes(1);
+    expect(res.status).toHaveBeenCalledWith(500);
+
+    expect(res.json).toHaveBeenCalledTimes(1);
+    expect(res.json).toHaveBeenCalledWith({ error: error.message });
   });
 });
