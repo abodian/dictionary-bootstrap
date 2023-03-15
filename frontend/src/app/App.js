@@ -31,7 +31,7 @@ export default function App() {
           <img src={dictionaryLogo} alt="BigCo Inc. logo"/>
         </div>
         <Search searchType={searchType} onFetchData={handleApiData}/>
-        {apiData != null && <ResultBox wordData={apiData}/>}
+        {apiData != null && <ResultBox wordData={apiData} searchType={searchType}/>}
       </div>
     </>
   )

@@ -21,7 +21,8 @@ export function Search({searchType, onFetchData}) {
     const url = `https://albo-dictionary-backend.onrender.com/thesaurus/${word}`;
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data);
+    onFetchData(data.responseData[0])
+    console.log(onFetchData);
   }
 
   const handleKeyPress = (event) => {

@@ -18,7 +18,18 @@ export function ResultBox({wordData, searchType}) {
           <Accordion.Header>Definition</Accordion.Header>
           <Accordion.Body>
           <h2 className='word'>{`'${wordData.word}'`}</h2>
-            {wordData.meanings.map(meaning => (
+            {searchType === 'Dictionary' && wordData.meanings.map(meaning => (
+              <div key={meaning.partOfSpeech}>
+                <h3>{meaning.partOfSpeech}</h3>
+                {meaning.definitions.map(definition => (
+                  <div className='definition' key={definition.definition}>
+                    <p>{definition.definition}</p>
+                    {definition.example && <li><em>Example:</em> {definition.example}</li>}
+                  </div>
+                ))}
+              </div>
+            ))}
+            {searchType === 'Thesaurus' && wordData.meanings.map(meaning => (
               <div key={meaning.partOfSpeech}>
                 <h3>{meaning.partOfSpeech}</h3>
                 {meaning.definitions.map(definition => (
