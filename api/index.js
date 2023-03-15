@@ -1,25 +1,25 @@
-const express = require('express')
+const express = require("express");
 const createError = require("http-errors");
 const path = require("path");
 const logger = require("morgan");
-const dictionaryRouter = require("./routes/dictionary");
-const cors = require('cors')
+const dictionaryRouter = require("./routes/dictionary.js");
+const cors = require("cors");
 
-const app = express()
+const app = express();
 
-app.use(cors())
+app.use(cors());
 
-app.get('/products/:id', function (req, res, next) {
-  res.json({msg: 'This is CORS-enabled for all origins!'})
-})
+app.get("/products/:id", function (req, res, next) {
+  res.json({ msg: "This is CORS-enabled for all origins!" });
+});
 
 app.listen(80, function () {
-  console.log('CORS-enabled web server listening on port 80')
-})
+  console.log("CORS-enabled web server listening on port 80");
+});
 
 const PORT = process.env.PORT || 4000;
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 // setup for receiving JSON
 app.use(express.json());
