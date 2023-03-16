@@ -6,20 +6,25 @@ require('./Search.css')
 
 export function Search({searchType, onFetchData}) {
   const [word, setWord] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleDictionarySubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true)
     const url = `https://albo-dictionary-backend.onrender.com/dictionary/${word}`;
     const response = await fetch(url);
     const data = await response.json();
+    setIsLoading(false)
     onFetchData(data.responseData[0])
   }
 
   const handleThesaurusSubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true)
     const url = `https://albo-dictionary-backend.onrender.com/thesaurus/${word}`;
     const response = await fetch(url);
     const data = await response.json();
+    setIsLoading(false)
     onFetchData(data.responseData)
   }
 
@@ -46,8 +51,9 @@ export function Search({searchType, onFetchData}) {
           variant="outline-secondary" 
           id="button-addon2"
           onClick={handleDictionarySubmit}
+          disabled={isLoading}
         >
-          Define
+          {isLoading ? 'Loading...' : 'Define'}
         </Button>
       </InputGroup>
     </div>
@@ -68,8 +74,9 @@ export function Search({searchType, onFetchData}) {
           variant="outline-secondary" 
           id="button-addon2"
           onClick={handleThesaurusSubmit}
+          disabled={isLoading}
         >
-          Get Synonyms
+          {isLoading ? 'Loading...' : 'Get Synonyms'}
         </Button>
     </InputGroup>
   </div>
